@@ -1,5 +1,5 @@
 # This script is designed to automatically configure all attached EBS volumes as "online" disks within a full Windows instance recovery.
-# This script can be executed via command line by copy/paste the text within a text file, change the file extension to .BAT, and excute or this script can be executed within PowerShell. 
+# This script can be executed via command line by copy/paste the text within a text file, change the file extension to .BAT, and execute or this script can be executed within PowerShell. 
 
 #######################################################################################################################################################################################################
 

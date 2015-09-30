@@ -1,0 +1,29 @@
+# This script is designed to automatically configure all attached EBS volumes as "online" disks within a full Windows instance recovery.
+# This script can be executed via command line by copy/paste the text within a text file, change the file extension to .BAT, and excute or this script can be executed within PowerShell. 
+
+#######################################################################################################################################################################################################
+
+@echo off
+REM Changes W2k8 SAN policy to "onlineall"
+systeminfo | find "OS Name" > "%~dp0%\osname.txt"
+SETLOCAL ENABLEDELAYEDEXPANSION
+for /f "delims=: tokens=2" %%i in ('type "%~dp0\osname.txt"') do set vers=%%i
+
+echo %vers% | find "Server 2012 Enterprise x64" > nul
+if %ERRORLEVEL% == 0 goto ver_2012_x64
+
+echo %vers% | find "Server 2012" > nul
+if %ERRORLEVEL% == 0 goto ver_2012
+
+echo %vers% | find "Server 2012 R2" > nul
+if %ERRORLEVEL% == 0 goto ver_2012
+
+:ver_2012
+echo san policy=onlineall noerr > "%~dp0\diskpart_w2k12.txt"
+echo exit >> "%~dp0"\diskpart_w2k8.txt
+%SystemRoot%\system32\diskpart.exe /s "%~dp0\diskpart_w2k12.txt"
+del "%~dp0\diskpart_w2k12.txt"
+
+:SANPOLICYEND
+ENDLOCAL
+del "%~dp0\osname.txt"

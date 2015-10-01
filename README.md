@@ -42,4 +42,4 @@ Create a snapshot of each volume attached to the server instance
 
 Note: The additional drives (D:, E:, etc...) that were attached to the instance prior to the recovery process may not automatically configure online once the server is powered on.
 
-This only requires an administrator to manually configure the additional drives as “online” within Disk Management. However, by executing the “Windows-Online-Disks" script on the server prior to any update or changes, all disks will automatically configure as online after a full instance recovery.
+This only requires an administrator to manually configure the additional drives as “online” within Disk Management. However, by executing the “# Windows-Online-Disks" script on the server prior to any update or changes, all disks will automatically configure as online after a full instance recovery.
